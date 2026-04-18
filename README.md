@@ -56,42 +56,28 @@ This tool **only supports Mullvad SOCKS5 proxies**.
 
 ## 📁 Service Configurations
 
-Each service is defined in its own JSON file in the project root.
+Each service is defined in its own JSON configuration file placed in the project root.
 
-**Included ready-to-use configs:**
-- `mediashop.json`
-- `cleverreach.json`
-- `todaytix.json`
-- `deutschestheater.json`
-- `tif-bremerhaven.json`
-- `1.json`, `2.json`, `3.json`
+Create one `.json` file per service (e.g. `myservice.json`).  
+The script automatically detects and loads all `.json` files when using `--all-services`.
 
-These configurations are already included and demonstrate that the tool works reliably.
-
-### Example: `mediashop.json`
+Example structure:
 
 ```json
 {
-    "cookie_url": "https://www.mediashop.tv/newsletter",
-    "post_url": "https://www.mediashop.tv/api/v2/gateway/SubscribeToNewsletter",
+    "cookie_url": "https://example.com/newsletter",
+    "post_url": "https://example.com/api/subscribe",
     "payload": {
-        "companyTransactions": "",
-        "country": "AT",
-        "email": "{email}",
-        "locale": "de-DE"
+        "email": "{email}"
     },
     "headers": {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:140.0) Gecko/20100101 Firefox/140.0",
-        "Accept": "*/*",
-        "Content-Type": "application/json",
-        "X-Project": "catalog_MSTV_de_at_ch-production",
-        "Referer": "https://www.mediashop.tv/newsletter",
-        "Origin": "https://www.mediashop.tv"
+        "Content-Type": "application/json"
     }
 }
 ```
 
-The placeholder `{email}` is automatically replaced.
+The placeholder `{email}` is automatically replaced with the target email address.
 
 ---
 
@@ -130,14 +116,8 @@ The placeholder `{email}` is automatically replaced.
 ```
 mullvad-newsletter-bomber/
 ├── test.py
-├── mediashop.json
-├── cleverreach.json
-├── todaytix.json
-├── deutschestheater.json
-├── tif-bremerhaven.json
-├── 1.json
-├── 2.json
-├── 3.json
+├── your-service.json
+├── another-service.json
 ├── emails.txt (optional)
 └── README.md
 ```
@@ -153,23 +133,4 @@ mullvad-newsletter-bomber/
 
 ---
 
-## ✅ Included Services
-
-The project ships with multiple working configurations:
-
-- MediaShop
-- CleverReach
-- TodayTix
-- Deutsches Theater
-- TIF Bremerhaven
-- Additional theater and shop integrations
-
-These configs prove the tool is functional and ready to use.
-
----
-
 **For educational and testing purposes only.**
-
----
-
-Happy testing!
